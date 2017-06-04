@@ -12,7 +12,7 @@
  cd /tmp
  wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.3.2.tar.gz
  wget http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
- wget http://sourceforge.net/projects/nagios/files/nrpe-3.x/nrpe-3.1.1.tar.gz
+ wget https://sourceforge.net/projects/nagios/files/nrpe-3.x/nrpe-3.1.1/nrpe-3.1.1.tar.gz
  tar -xvf nagios-4.3.2.tar.gz
  tar -xvf nagios-plugins-2.2.1.tar.gz
  tar -xvf nrpe-3.1.1.tar.gz
