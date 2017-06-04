@@ -2,7 +2,7 @@
 
 # docker-nagios
 
-Docker container for [Nagios 4.3.1][3]
+Docker container for [Nagios 4.3.2][3]
 
 "Nagios Is The Industry Standard In IT Infrastructure Monitoring. Achieve instant awareness of IT infrastructure problems, so downtime doesn't adversely affect your business.Nagios offers complete monitoring and alerting for servers, switches, applications, and services."
 
@@ -10,7 +10,7 @@ Docker container for [Nagios 4.3.1][3]
 
 - [Docker][2]
 
-To install docker in Ubuntu 15.04 use the commands:
+To install docker in Ubuntu 16.04 use the commands:
 
 ```
 $ sudo apt-get update
@@ -43,7 +43,7 @@ $ htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
 
 note: to access site is <http://server_ip:external_container_port/nagios/>
 
-update to nrpe-3.0.1
+update to nrpe-3.1.1
 
 update to nagios-plugins-2.2.1
 
