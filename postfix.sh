@@ -3,4 +3,4 @@
 # `chpst -u root` runs the given command as the user `xxxxx`.
 # If you omit that part, the command will be run as root.
 
-exec chpst -u root /usr/lib/postfix/master -d -c /etc/postfix 2>&1
+exec chpst -u postfix postfix start -d -c /etc/postfix 2>&1
