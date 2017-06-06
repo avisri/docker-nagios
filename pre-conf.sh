@@ -53,4 +53,5 @@
   a2enmod cgi
   htpasswd -b -c /usr/local/nagios/etc/htpasswd.users nagiosadmin admin
   sed -i 's/#Include.*/Include conf-available\/nagios.conf/' /etc/apache2/sites-enabled/000-default.conf
+  sed -i 's/\/usr\/sbin\/sendmail -s/\/usr\/sbin\/sendmail -vt/' /usr/local/nagios/etc/objects/commands.cfg
   rm -rf /tmp/* /var/tmp/* 
