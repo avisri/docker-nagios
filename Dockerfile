@@ -7,11 +7,6 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 RUN echo "postfix postfix/mailname string example.com" | debconf-set-selections
 RUN echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >> /etc/apt/sources.list
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list
-
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && apt-get install -y -q  wget \
@@ -48,15 +43,6 @@ RUN chmod +x /etc/my_init.d/startup.sh
 RUN /usr/bin/download-mibs
 RUN echo 'mibs +ALL' >> /etc/snmp/snmp.conf
 
-# RUN ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libssl.so.10
-
-#RUN ln -s /lib/x86_64-linux-gnu/libssl.so.1.0.0 /usr/lib/x86_64-linux-gnu/libssl.so.10
-
-#Create libcrypto simlink
-#RUN ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libcrypto.so.10
-
-
-
 
 ##Adding Deamons to containers
 # to add apache2 deamon to runit
@@ -76,16 +62,6 @@ COPY nagios-log.sh /etc/service/nagios/log/run
 RUN chmod +x /etc/service/nagios/run /etc/service/nagios/log/run \
     && cp /var/log/cron/config /var/log/nagios/ \
     && chown -R root /var/log/nagios
-
-# to add postfix deamon to runit
-RUN mkdir /etc/service/postfix /var/log/postfix ; sync
-RUN mkdir /etc/service/postfix/log
-COPY postfix.sh /etc/service/postfix/run
-COPY postfixstop.sh /etc/service/postfix/finish
-COPY postfix-log.sh /etc/service/postfix/log/run
-RUN chmod +x /etc/service/postfix/run /etc/service/postfix/finish /etc/service/postfix/log/run \
-    && cp /var/log/cron/config /var/log/postfix/ \
-    && chown -R root /var/log/postfix
 
 #pre-config scritp for different service that need to be run when container image is create
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
