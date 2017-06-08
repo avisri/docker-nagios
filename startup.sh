@@ -13,7 +13,7 @@ else
         echo 'root:  me@example.com' >>/etc/aliases
         newaliases
         #add container Network Docker0 and container ip to postfix configuration , it will fail is custom container network
-        sed -i '/inet_interfaces/s/$/ '"$(cat /etc/hosts | grep $HOSTNAME| awk -F\  '{print $1}')"'/' /etc/postfix/main.cf
+        sed -i 's/inet_interfaces = all/inet_interfaces = '"$(cat /etc/hosts | grep $HOSTNAME| awk -F\  '{print $1}')"'/' /etc/postfix/main.cf
         sed -i '/mynetworks/s/$/ '"$(cat /etc/hosts | grep $HOSTNAME| awk -F. '{print $1 "." $2 ".0.0\/16"}')"'/' /etc/postfix/main.cf
         postfix start
         date > /etc/configured
