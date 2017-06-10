@@ -15,6 +15,12 @@ else
         #add container Network Docker0 and container ip to postfix configuration , it will fail is custom container network
         sed -i 's/inet_interfaces = all/inet_interfaces = '"$(cat /etc/hosts | grep $HOSTNAME| awk -F\  '{print $1}')"'/' /etc/postfix/main.cf
         sed -i '/mynetworks/s/$/ '"$(cat /etc/hosts | grep $HOSTNAME| awk -F. '{print $1 "." $2 ".0.0\/16"}')"'/' /etc/postfix/main.cf
-        postfix start
+        # to make sure nagios email permision are correct
+        touch /var/mail/nagios
+        chown nagios:mail /var/mail/nagios
+        chmod o-r /var/mail/nagios
+        chmod g+rw /var/mail/nagios
+        #start postfix 
+        postfix start & 
         date > /etc/configured
 fi
