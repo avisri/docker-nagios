@@ -21,6 +21,6 @@ else
         chmod o-r /var/mail/nagios
         chmod g+rw /var/mail/nagios
         #start postfix 
-        postfix start & 
+        postfix start 2>&1 & 
         date > /etc/configured
 fi
