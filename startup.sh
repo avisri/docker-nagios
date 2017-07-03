@@ -5,7 +5,7 @@ set -e
 
 if [ -f /etc/configured ]; then
         echo 'already configured'
-        postfix start
+        postfix start 2>&1 & 
 else
       #code that need to run only one time ....
         #needed for fix problem with ubuntu and cron
